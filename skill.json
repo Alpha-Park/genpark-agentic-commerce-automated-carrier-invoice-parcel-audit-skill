@@ -1,0 +1,64 @@
+{
+  "name": "genpark-agentic-commerce-automated-carrier-invoice-parcel-audit-skill",
+  "version": "1.0.0",
+  "title": "Automated Carrier Parcel Invoice & Money-Back Audit Arbiter Skill",
+  "description": "FedEx/UPS 50-point automated parcel invoice auditor (late delivery GSR Money-Back Guarantee claims, residential fee surcharges, and incorrect address correction clawbacks). Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "parcel-audit",
+    "carrier-disputes",
+    "fedex-ups-refunds",
+    "shipping-invoice",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "audit_carrier_invoice_for_overcharges",
+      "description": "Scan billed parcel shipments against carrier service commitments to detect late deliveries and erroneous surcharges.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "billed_shipments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "billed_shipments"
+        ]
+      }
+    },
+    {
+      "name": "compile_carrier_gsr_refund_claim",
+      "description": "Generate automated Guaranteed Service Refund (GSR) dispute claim payload for carrier EDI/API submission.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tracking_number": {
+            "type": "string"
+          },
+          "carrier": {
+            "type": "string"
+          },
+          "disputed_charge_usd": {
+            "type": "number"
+          },
+          "claim_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tracking_number",
+          "carrier",
+          "disputed_charge_usd"
+        ]
+      }
+    }
+  ]
+}
